@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>dsferruzza$if(title)$ - $title$$endif$</title>
-    <meta charset="UTF-8">
+	<title>dsferruzza$if(title)$ - $title$$endif$</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="/assets/css/bootstrap.css">
+	<link rel="stylesheet" href="/assets/css/bootstrap.css">
+	<link rel="stylesheet" href="/assets/css/main.css">
 </head>
-<body>
-    <div class="container">
-        <header>
-            <a href="/">dsferruzza</a>
-        </header>
+<body class="container">
+	<header>
+		<nav class="navbar navbar-default" role="navigation">
+			<a class="navbar-brand" href="/">dsferruzza</a>
+			<ul class="nav navbar-nav">
+				<li><a href="/">Home</a></li>
+				<li><a href="#">Blog</a></li>
+				<li><a href="#">CV</a></li>
+			</ul>
+		</nav>
+	</header>
 
-        <nav>
-           
-        </nav>
+	<article>
+		$body$
+	</article>
 
-        <article>
-            $body$
-        </article>
-
-        <footer>
-            
-        </footer>
-    </div>
+	<footer>
+		
+	</footer>
 </body>
 </html>

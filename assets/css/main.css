@@ -41,3 +41,27 @@
 	font-family: Alegreya, Palatino, Georgia, serif;
 	font-size: 20px;
 }
+
+
+/* HEADER */
+
+body > header {
+	margin-bottom: 60px;
+}
+
+.navbar {
+	padding: 30px;
+	background: none;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+}
+
+.navbar-brand {
+	font-size: 30px;
+}
+
+a.navbar-brand:hover, .navbar-nav > li:hover > a {
+	color: #3596f9 !important;
+	text-decoration: underline;
+}

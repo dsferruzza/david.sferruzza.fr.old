@@ -43,6 +43,13 @@
 }
 
 
+/* GLOBAL */
+
+.container {
+	max-width: 770px;
+}
+
+
 /* HEADER */
 
 body > header {
@@ -64,4 +71,11 @@ body > header {
 a.navbar-brand:hover, .navbar-nav > li:hover > a {
 	color: #3596f9 !important;
 	text-decoration: underline;
+}
+
+
+/* CONTENT */
+
+body > article h1 {
+	margin-top: 50px;
 }

@@ -1,0 +1,43 @@
+/* FONTS */
+
+@font-face {
+	font-family: 'Alegreya';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Alegreya'), local('Alegreya-Regular'), url(../fonts/Alegreya/Alegreya-Regular.woff) format('woff');
+}
+@font-face {
+	font-family: 'Alegreya';
+	font-style: normal;
+	font-weight: 700;
+	src: local('Alegreya Bold'), local('Alegreya-Bold'), url(../fonts/Alegreya/Alegreya-Bold.woff) format('woff');
+}
+@font-face {
+	font-family: 'Alegreya';
+	font-style: normal;
+	font-weight: 900;
+	src: local('Alegreya Black'), local('Alegreya-Black'), url(../fonts/Alegreya/Alegreya-Black.woff) format('woff');
+}
+@font-face {
+	font-family: 'Alegreya';
+	font-style: italic;
+	font-weight: 400;
+	src: local('Alegreya Italic'), local('Alegreya-Italic'), url(../fonts/Alegreya/Alegreya-Italic.woff) format('woff');
+}
+@font-face {
+	font-family: 'Alegreya';
+	font-style: italic;
+	font-weight: 700;
+	src: local('Alegreya Bold Italic'), local('Alegreya-BoldItalic'), url(../fonts/Alegreya/Alegreya-BoldItalic.woff) format('woff');
+}
+@font-face {
+	font-family: 'Alegreya';
+	font-style: italic;
+	font-weight: 900;
+	src: local('Alegreya Black Italic'), local('Alegreya-BlackItalic'), url(../fonts/Alegreya/Alegreya-BlackItalic.woff) format('woff');
+}
+
+* {
+	font-family: Alegreya, Palatino, Georgia, serif;
+	font-size: 20px;
+}

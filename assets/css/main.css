@@ -73,6 +73,10 @@ a.navbar-brand:hover, .navbar-nav > li:hover > a {
 	text-decoration: underline;
 }
 
+.navbar-nav .glyphicon {
+	font-size: 14px;
+}
+
 
 /* CONTENT */
 

@@ -49,6 +49,10 @@
 	max-width: 770px;
 }
 
+.glyphicon {
+	font-size: 14px;
+}
+
 
 /* HEADER */
 
@@ -73,13 +77,13 @@ a.navbar-brand:hover, .navbar-nav > li:hover > a {
 	text-decoration: underline;
 }
 
-.navbar-nav .glyphicon {
-	font-size: 14px;
-}
-
 
 /* CONTENT */
 
 body > section h1 {
 	margin-top: 50px;
+}
+
+body > section header {
+	margin-bottom: 30px;
 }

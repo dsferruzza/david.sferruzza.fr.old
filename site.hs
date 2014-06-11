@@ -69,5 +69,6 @@ postsPattern = "posts/*.md"
 
 postCtx :: Context String
 postCtx =
+    metadataField <>
     dateField "date" "%B %e, %Y" <>
     defaultContext

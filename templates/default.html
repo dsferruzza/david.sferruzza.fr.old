@@ -24,6 +24,17 @@
 		$body$
 	</section>
 
+	$if(posts)$
+	<aside>
+		<h1>Recent posts</h1>
+		<ul>
+			$for(posts)$
+			<li><a href="$url$">$title$</a> - $date$ - by $author$</li>
+			$endfor$
+		</ul>
+	</aside>
+	$endif$
+
 	<footer>
 		
 	</footer>

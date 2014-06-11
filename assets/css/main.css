@@ -80,6 +80,6 @@ a.navbar-brand:hover, .navbar-nav > li:hover > a {
 
 /* CONTENT */
 
-body > article h1 {
+body > section h1 {
 	margin-top: 50px;
 }

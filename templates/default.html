@@ -14,7 +14,7 @@
 			<a class="navbar-brand" href="/">dsferruzza</a>
 			<ul class="nav navbar-nav">
 				<li><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-				<li><a href="#"><span class="glyphicon glyphicon-bullhorn"></span> Blog</a></li>
+				<li><a href="/archive.html"><span class="glyphicon glyphicon-bullhorn"></span> Blog</a></li>
 				<li><a href="#"><span class="glyphicon glyphicon-book"></span> CV</a></li>
 			</ul>
 		</nav>
@@ -27,11 +27,7 @@
 	$if(posts)$
 	<aside>
 		<h1>Recent posts</h1>
-		<ul>
-			$for(posts)$
-			<li><a href="$url$">$title$</a> - $date$ - by $author$</li>
-			$endfor$
-		</ul>
+		$partial("templates/postList.html")$
 	</aside>
 	$endif$
 

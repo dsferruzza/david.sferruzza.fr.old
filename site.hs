@@ -61,7 +61,7 @@ main = do
             posts <- recentFirst =<< loadAll postsPattern
             itemTpl <- loadBody "templates/postListItem.html"
             list <- applyTemplateList itemTpl postCtx posts
-            let archiveCtx = constField "title" "Blog" <> constField "posts" list <> defaultContext
+            let archiveCtx = tagCloudField "tags" 100 200 tags <> constField "title" "Blog" <> constField "posts" list <> defaultContext
             makeItem ""
                 >>= loadAndApplyTemplate "templates/postList.html" archiveCtx
                 >>= loadAndApplyTemplate "templates/default.html" defaultContext

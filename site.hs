@@ -30,7 +30,7 @@ main = do
             posts <- fmap (take 5) . recentFirst =<< loadAll postsPattern
             itemTpl <- loadBody "templates/postListItem.html"
             list <- applyTemplateList itemTpl postCtx posts
-            let pageCtx = constField "title" "Recent posts" <> constField "posts" list <> defaultContext
+            let pageCtx = constField "sectionTitle" "Recent posts" <> constField "posts" list <> defaultContext
             pandocCompiler
                 >>= loadAndApplyTemplate "templates/default.html" pageCtx
                 >>= relativizeUrls
@@ -61,22 +61,24 @@ main = do
             posts <- recentFirst =<< loadAll postsPattern
             itemTpl <- loadBody "templates/postListItem.html"
             list <- applyTemplateList itemTpl postCtx posts
-            let archiveCtx = tagCloudField "tags" 100 200 tags <> constField "title" "Blog" <> constField "posts" list <> defaultContext
+            let titleFields = constField "title" "Blog" <> constField "sectionTitle" "Blog"
+            let archiveCtx = tagCloudField "tags" 100 200 tags <> titleFields <> constField "posts" list <> defaultContext
             makeItem ""
                 >>= loadAndApplyTemplate "templates/postList.html" archiveCtx
-                >>= loadAndApplyTemplate "templates/default.html" defaultContext
+                >>= loadAndApplyTemplate "templates/default.html" (titleFields <> defaultContext)
                 >>= relativizeUrls
 
     -- Post tags
     tagsRules tags $ \tag pattern -> do
-        let title = "Posts tagged \"" ++ tag ++ "\""
         route idRoute
         compile $ do
             list <- postList tags pattern recentFirst
-            let archiveCtx = constField "title" title <> constField "posts" list <> defaultContext
+            let title = "Posts tagged \"" ++ tag ++ "\""
+            let titleFields = constField "title" title <> constField "sectionTitle" title
+            let archiveCtx = titleFields <> constField "posts" list <> defaultContext
             makeItem ""
                 >>= loadAndApplyTemplate "templates/postList.html" archiveCtx
-                >>= loadAndApplyTemplate "templates/default.html" defaultContext
+                >>= loadAndApplyTemplate "templates/default.html" (titleFields <> defaultContext)
                 >>= relativizeUrls
 
     match "templates/*" $ compile templateCompiler

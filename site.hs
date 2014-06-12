@@ -4,6 +4,8 @@ import           GHC.IO.Encoding
 import           Network (withSocketsDo)
 import           Hakyll
 import           Data.Monoid ((<>))
+import           Data.List (isPrefixOf)
+import           Data.Text (pack, unpack, replace, empty)
 
 
 --------------------------------------------------------------------------------
@@ -15,7 +17,7 @@ main = do
   withSocketsDo $ hakyll $ do
 
     -- Assets & resources
-    match "assets/fonts/**" $ do
+    match ("assets/fonts/**" .||. "assets/img/**") $ do
         route   idRoute
         compile copyFileCompiler
 
@@ -50,6 +52,9 @@ main = do
     match postsPattern $ do
         route   $ setExtension "html"
         compile $ pandocCompiler
+            >>= (externalizeUrls $ feedRoot myFeedConfiguration)
+            >>= saveSnapshot "content"
+            >>= (unExternalizeUrls $ feedRoot myFeedConfiguration)
             >>= loadAndApplyTemplate "templates/post.html" (tagsCtx tags)
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
             >>= relativizeUrls
@@ -81,6 +86,14 @@ main = do
                 >>= loadAndApplyTemplate "templates/default.html" (titleFields <> defaultContext)
                 >>= relativizeUrls
 
+    -- Atom feed
+    create ["atom.xml"] $ do
+        route idRoute
+        compile $ do
+            let feedCtx = bodyField "description" <> postCtx
+            posts <- fmap (take 10) . recentFirst =<< loadAllSnapshots postsPattern "content"
+            renderAtom myFeedConfiguration feedCtx posts
+
     match "templates/*" $ compile templateCompiler
 
 
@@ -104,3 +117,33 @@ postList tags pattern preprocess' = do
     postItemTpl <- loadBody "templates/postListItem.html"
     posts <- preprocess' =<< loadAll pattern
     applyTemplateList postItemTpl (tagsCtx tags) posts
+
+--------------------------------------------------------------------------------
+myFeedConfiguration :: FeedConfiguration
+myFeedConfiguration = FeedConfiguration
+    { feedTitle       = "dsferruzza"
+    , feedDescription = "David Sferruzza's blog"
+    , feedAuthorName  = "David Sferruzza"
+    , feedAuthorEmail = "david.sferruzza@gmail.com"
+    , feedRoot        = "http://david.sferruzza.fr"
+    }
+
+externalizeUrls :: String -> Item String -> Compiler (Item String)
+externalizeUrls root item = return $ fmap (externalizeUrlsWith root) item
+
+externalizeUrlsWith :: String -- ^ Path to the site root
+                    -> String -- ^ HTML to externalize
+                    -> String -- ^ Resulting HTML
+externalizeUrlsWith root = withUrls ext
+  where
+    ext x = if isExternal x then x else root ++ x
+
+unExternalizeUrls :: String -> Item String -> Compiler (Item String)
+unExternalizeUrls root item = return $ fmap (unExternalizeUrlsWith root) item
+
+unExternalizeUrlsWith :: String -- ^ Path to the site root
+                      -> String -- ^ HTML to unExternalize
+                      -> String -- ^ Resulting HTML
+unExternalizeUrlsWith root = withUrls unExt
+  where
+    unExt x = if root `isPrefixOf` x then unpack $ replace (pack root) empty (pack x) else x

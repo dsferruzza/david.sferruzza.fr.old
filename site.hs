@@ -69,7 +69,7 @@ main = do
 
     -- Post tags
     tagsRules tags $ \tag pattern -> do
-        let title = "Posts tagged " ++ tag
+        let title = "Posts tagged \"" ++ tag ++ "\""
         route idRoute
         compile $ do
             list <- postList tags pattern recentFirst

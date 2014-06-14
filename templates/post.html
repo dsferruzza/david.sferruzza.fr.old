@@ -1,12 +1,13 @@
-<article>
+<article itemscope itemtype="http://schema.org/Article">
 	<header>
-		<h1>$title$</h1>
+		<h1 itemprop="name">$title$</h1>
 		<p>
-			<span class="glyphicon glyphicon-user"></span> $author$ - <span class="glyphicon glyphicon-time"></span> $date$ $if(updated)$<em>(last update: $updated$)</em>$endif$
-			<br><span class="glyphicon glyphicon-globe"></span> $lang$ - <span class="glyphicon glyphicon-tags"></span> $prettytags$
+			<span class="glyphicon glyphicon-user"></span> <span itemprop="creator">$author$</span> - 
+			<span class="glyphicon glyphicon-time"></span> <time itemprop="dateCreated" datetime="$date.iso8601$">$date$</time> 
+			$if(updated)$<em>(last update: <time itemprop="dateModified" datetime="$updated.iso8601$">$updated$</time>)</em>$endif$
+			<br><span class="glyphicon glyphicon-globe"></span> <span itemprop="inLanguage">$lang$</span> - 
+			<span class="glyphicon glyphicon-tags"></span> <span itemprop="keywords">$prettytags$</span>
 		</p>
 	</header>
-	<section>
-		$body$
-	</section>
+	<div itemprop="articleBody">$body$</div>
 </article>

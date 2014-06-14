@@ -8,7 +8,7 @@ import           Data.List (isPrefixOf)
 import           Data.Text (pack, unpack, replace, empty)
 import           Data.Time.Format (parseTime, formatTime)
 import           Data.Time.Clock (UTCTime (..))
-import           System.Locale (TimeLocale, defaultTimeLocale)
+import           System.Locale (TimeLocale, defaultTimeLocale, iso8601DateFormat)
 import qualified Data.Map as M
 import           Control.Monad (msum)
 
@@ -109,7 +109,9 @@ postsPattern = "posts/*.md"
 postCtx :: Context String
 postCtx =
     updatedField "updated" "%B %e, %Y" <>
+    updatedField "updated.iso8601" (iso8601DateFormat Nothing) <>
     dateField "date" "%B %e, %Y" <>
+    dateField "date.iso8601" (iso8601DateFormat Nothing) <>
     defaultContext
 
 updatedField :: String -> String -> Context a

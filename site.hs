@@ -6,6 +6,11 @@ import           Hakyll
 import           Data.Monoid ((<>))
 import           Data.List (isPrefixOf)
 import           Data.Text (pack, unpack, replace, empty)
+import           Data.Time.Format (parseTime, formatTime)
+import           Data.Time.Clock (UTCTime (..))
+import           System.Locale (TimeLocale, defaultTimeLocale)
+import qualified Data.Map as M
+import           Control.Monad (msum)
 
 
 --------------------------------------------------------------------------------
@@ -90,7 +95,7 @@ main = do
     create ["atom.xml"] $ do
         route idRoute
         compile $ do
-            let feedCtx = bodyField "description" <> postCtx
+            let feedCtx = bodyField "description" <> updatedField "updated" "%Y-%m-%dT%H:%M:%SZ" <> postCtx
             posts <- fmap (take 10) . recentFirst =<< loadAllSnapshots postsPattern "content"
             renderAtom myFeedConfiguration feedCtx posts
 
@@ -103,8 +108,35 @@ postsPattern = "posts/*.md"
 
 postCtx :: Context String
 postCtx =
+    updatedField "updated" "%B %e, %Y" <>
     dateField "date" "%B %e, %Y" <>
     defaultContext
+
+updatedField :: String -> String -> Context a
+updatedField key format = field key $ \i -> do
+    time <- getUpdatedTime locale $ itemIdentifier i
+    return $ formatTime locale format time
+  where
+    locale = defaultTimeLocale
+
+getUpdatedTime :: MonadMetadata m => TimeLocale -> Identifier -> m UTCTime
+getUpdatedTime locale id' = do
+    metadata <- getMetadata id'
+    let tryField k fmt = M.lookup k metadata >>= parseTime' fmt
+    maybe empty' return $ msum $ [tryField "updated" fmt | fmt <- formats]
+  where
+    empty'     = fail $ "getUpdatedTime: " ++
+        "could not parse time for " ++ show id'
+    parseTime' = parseTime locale
+    formats    =
+        [ "%a, %d %b %Y %H:%M:%S %Z"
+        , "%Y-%m-%dT%H:%M:%S%Z"
+        , "%Y-%m-%d %H:%M:%S%Z"
+        , "%Y-%m-%d"
+        , "%B %e, %Y %l:%M %p"
+        , "%B %e, %Y"
+        , "%b %d, %Y"
+        ]
 
 tagsCtx :: Tags -> Context String
 tagsCtx tags = 

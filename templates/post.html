@@ -10,4 +10,23 @@
 		</p>
 	</header>
 	<div itemprop="articleBody">$body$</div>
+	<hr>
+	<aside id="disqus_thread">
+		<div class="text-center">
+			<a href="#disqus_thread" onclick="disqus()" class="btn btn-primary">Load comments</a>
+		</div>
+	</aside>
 </article>
+
+<script type="text/javascript">
+	function disqus() {
+		var disqus_shortname = 'davidsferruzzafr';
+		var disqus_title = '$title$';
+
+		(function() {
+			var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+			dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+			(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+		})();
+	}
+</script>

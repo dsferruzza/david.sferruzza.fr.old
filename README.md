@@ -1,6 +1,9 @@
 david.sferruzza.fr
 ==================
 
+This is my personnal website's source code.
+It is made with [Hakyll](http://jaspervdj.be/hakyll/).
+
 ## How to install
 
 - install haskell platform

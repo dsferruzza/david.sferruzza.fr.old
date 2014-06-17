@@ -15,3 +15,8 @@ It is made with [Hakyll](http://jaspervdj.be/hakyll/).
 - `cabal build`
 
 To build: `cabal run build`
+
+## License
+
+- Code & resources I made: [MIT](LICENSE)
+- Contents: [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/)

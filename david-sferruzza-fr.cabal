@@ -3,7 +3,7 @@ version:             1.0.0
 synopsis:            My personnal website
 description:         My personnal website
 homepage:            http://david.sferruzza.fr
--- license:             
+license:             MIT
 license-file:        LICENSE
 author:              David Sferruzza
 maintainer:          david.sferruzza@gmail.com

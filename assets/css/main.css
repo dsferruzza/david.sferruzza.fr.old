@@ -37,7 +37,7 @@
 	src: local('Alegreya Black Italic'), local('Alegreya-BlackItalic'), url(../fonts/Alegreya/Alegreya-BlackItalic.woff) format('woff'), url(../fonts/Alegreya/Alegreya-BlackItalic.ttf) format('truetype');
 }
 
-* {
+body {
 	font-family: Alegreya, Palatino, Georgia, serif;
 	font-size: 20px;
 }

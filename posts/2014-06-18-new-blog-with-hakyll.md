@@ -5,6 +5,7 @@ lang: en
 tags: blog,hakyll,haskell
 description: Why I'm opening this blog and how I made it
 published: 2014-06-18 00:10:00+02:00
+updated: 2014-08-12 00:08:00+02:00
 ---
 
 ## Why?
@@ -68,7 +69,7 @@ A solution would be to use the `xml:base`[^4] attribute in a root element of the
 The feed [rendering function](https://github.com/jaspervdj/hakyll/blob/master/src/Hakyll/Web/Feed.hs#L122) let me think it would be possible to override the [default feed templates](https://github.com/jaspervdj/hakyll/tree/master/data/templates).
 But I don't know if it is possible yet, nor how to do it...
 
-So I picked up [another solution](https://github.com/divarvel/blog/blob/master/site.hs#L31-L33) from [Clément Delafargue's blog](http://blog.clement.delafargue.name).
+So I picked up [another solution](https://github.com/divarvel/blog/blob/master/Main.hs#L31-L33) from [Clément Delafargue's blog](http://blog.clement.delafargue.name).
 When generating posts' pages, Hakyll will resolve relative links before taking a snapshot for the feed, and then transform them back so that they will be relative in the rendered page (but not in the feed).
 
 I believe that the first solution would be cleaner, but the second works nicely.

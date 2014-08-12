@@ -95,6 +95,14 @@ body > section header {
 	margin-bottom: 30px;
 }
 
+.figure {
+	text-align: center;
+}
+
+p.caption {
+	font-style: italic;
+}
+
 /* FOOTER */
 
 body > footer {

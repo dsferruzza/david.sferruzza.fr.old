@@ -14,7 +14,7 @@ cabal-version:       >=1.10
 
 executable david-sferruzza-fr
   main-is:             site.hs
-  build-depends:       base >=4.6 && <4.7
+  build-depends:       base == 4.*
                      , hakyll == 4.5.3.0
                      , network
                      , text

@@ -3,8 +3,8 @@ title: Home
 ---
 
 My name is **David Sferruzza**.
-I am a curious generalist ([Icam](http://www.icam.fr)) engineer.
-I love creating and programming stuff!
+I am a young generalist engineer graduate from [Icam de Nantes](http://www.icam.fr), fond of new technologies, IT, and software development. 
+I am currently in charge of R&D at [Escale](http://www.escaledigitale.com), an innovative web agency, and preparing a PhD thesis in software engineering at [Université de Nantes](http://www.univ-nantes.fr/).
 
 # Contact
 

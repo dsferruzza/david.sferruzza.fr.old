@@ -7,3 +7,4 @@ cabal.config
 dist
 *.sublime-project
 *.sublime-workspace
+.stack-work

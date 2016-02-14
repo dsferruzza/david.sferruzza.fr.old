@@ -6,15 +6,11 @@ It is made with [Hakyll](http://jaspervdj.be/hakyll/).
 
 ## How to install
 
-- install haskell platform
-- `cabal update`
-- `cabal install cabal-install`
+- install [stack](http://haskellstack.org)
 - clone this repo
-- `cabal sandbox init`
-- `cabal install --dependencies-only`
-- `cabal build`
+- `stack build`
 
-To build: `cabal run build`
+To build: `stack exec david-sferruzza-fr build`
 
 ## License
 

@@ -15,10 +15,9 @@ cabal-version:       >=1.10
 executable david-sferruzza-fr
   main-is:             site.hs
   build-depends:       base == 4.*
-                     , hakyll == 4.7.2.3
+                     , hakyll == 4.7.5.1
                      , network
                      , text
-                     , old-locale
                      , time
                      , containers
   ghc-options:         -O3 -Wall -threaded

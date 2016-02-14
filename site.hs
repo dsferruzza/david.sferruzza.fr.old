@@ -6,9 +6,8 @@ import           Hakyll
 import           Data.Monoid ((<>))
 import           Data.List (isPrefixOf)
 import           Data.Text (pack, unpack, replace, empty)
-import           Data.Time.Format (parseTime, formatTime)
+import           Data.Time.Format (TimeLocale, defaultTimeLocale, iso8601DateFormat, parseTimeM, formatTime)
 import           Data.Time.Clock (UTCTime (..))
-import           System.Locale (TimeLocale, defaultTimeLocale, iso8601DateFormat)
 import qualified Data.Map as M
 import           Control.Monad (msum)
 
@@ -129,7 +128,7 @@ getUpdatedTime locale id' = do
   where
     empty'     = fail $ "getUpdatedTime: " ++
         "could not parse time for " ++ show id'
-    parseTime' = parseTime locale
+    parseTime' = parseTimeM True locale
     formats    =
         [ "%a, %d %b %Y %H:%M:%S %Z"
         , "%Y-%m-%dT%H:%M:%S%Z"

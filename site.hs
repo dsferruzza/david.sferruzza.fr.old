@@ -141,7 +141,7 @@ getUpdatedTime locale id' = do
         ]
 
 tagsCtx :: Tags -> Context String
-tagsCtx tags = 
+tagsCtx tags =
     tagsField "prettytags" tags <>
     postCtx
 
